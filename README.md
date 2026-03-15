@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./phishnet_new_logo.png" alt="PhishNet logo" width="260">
+  <img src="Phishing_new_logo.png" alt="PhishNet logo" width="260">
 </p>
 
 # PhishNet: AI Email Safety for Older Adults
