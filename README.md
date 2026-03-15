@@ -4,7 +4,7 @@
 
 # PhishNet: AI Email Safety for Older Adults
 
-**Team Members:** *Add names and emails here*  
+**Team Members:** Arturo, Lillian, Jacob, Michael, Xavier
 **Video Pitch (YouTube):** *Add link after recording*
 
 ## 1. Problem Statement
