@@ -4,7 +4,18 @@
 
 # PhishNet: AI Email Safety for Older Adults
 
-**Team Members:** Arturo, Lillian, Jacob, Michael, Xavier
+**Team Members:** 
+
+- Arturo, agarc363@asu.edu
+
+- Lillian, llomboy@asu.edu
+
+- Jacob, jlevines@asu.edu
+
+- Michael, mjwill12@asu.edu
+
+- Xavier, xdeguzma@asu.edu
+
 **Video Pitch (YouTube):** *Add link after recording*
 
 ## 1. Problem Statement
@@ -60,4 +71,4 @@ A lightweight Streamlit or Gradio interface is realistic for this course.
 [5] [CMU Enron Email Dataset](https://www.cs.cmu.edu/~enron/)  
 [6] [Phishing Email Curated Datasets (Zenodo)](https://zenodo.org/records/8339691)  
 [7] [University of Twente Phishing Validation Emails Dataset](https://research.utwente.nl/en/datasets/phishing-validation-emails-dataset/)
-# MAE-301-Team-Project
+
