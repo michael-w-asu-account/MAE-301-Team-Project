@@ -1,0 +1,5 @@
+Email: Reset your password now!
+Prediction: Phishing
+
+Email: Hey, are we still on for dinner?
+Prediction: Legitimate
