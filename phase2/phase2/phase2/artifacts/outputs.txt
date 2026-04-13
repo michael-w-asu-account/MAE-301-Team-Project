@@ -3,3 +3,9 @@ Prediction: Phishing
 
 Email: Hey, are we still on for dinner?
 Prediction: Legitimate
+
+Email: Click here to claim your reward!
+Prediction: Phishing
+
+Email: Can you send me the notes from class?
+Prediction: Legitimate
