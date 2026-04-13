@@ -10,8 +10,8 @@ Prediction: Phishing
 Email: Can you send me the notes from class?
 Prediction: Legitimate
 
-Email: Reset your password now! 
+Email: Watch this video for free money! 
 Prediction: Phishing 
 
-Email: Hey, are we still on for dinner? 
+Email: Hey, are we still on for lunch? 
 Prediction: Legitimate
