@@ -6,7 +6,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
 import pandas as pd
 
-# Sample dataset (REPLACE THIS WITH REAL DATA ASAP)
+# Sample dataset (temporary data)
 data = {
     "text": [
         "Reset your password now!",
