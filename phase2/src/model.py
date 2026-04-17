@@ -10,9 +10,16 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
 
 # -----------------------------
+# Paths
+# -----------------------------
+script_dir = os.path.dirname(os.path.abspath(__file__))
+data_path = os.path.normpath(os.path.join(script_dir, "..", "data", "emails.csv"))
+artifacts_dir = os.path.normpath(os.path.join(script_dir, "..", "artifacts"))
+
+# -----------------------------
 # Load Dataset
 # -----------------------------
-df = pd.read_csv("data/emails.csv")
+df = pd.read_csv(data_path)
 
 # -----------------------------
 # Train/Test Split
@@ -46,10 +53,10 @@ print(report)
 # -----------------------------
 # Save Artifacts
 # -----------------------------
-os.makedirs("artifacts", exist_ok=True)
+os.makedirs(artifacts_dir, exist_ok=True)
 
-joblib.dump(model, "artifacts/model.pkl")
-joblib.dump(vectorizer, "artifacts/vectorizer.pkl")
+joblib.dump(model, os.path.join(artifacts_dir, "model.pkl"))
+joblib.dump(vectorizer, os.path.join(artifacts_dir, "vectorizer.pkl"))
 
 # -----------------------------
 # Explanation Function
@@ -104,7 +111,8 @@ sample_emails = [
     "Watch this video for free money!"
 ]
 
-with open("outputs.txt", "w") as f:
+outputs_path = os.path.join(artifacts_dir, "outputs.txt")
+with open(outputs_path, "w") as f:
     for email in sample_emails:
         label, explanation, action = predict_email(email)
 
@@ -113,7 +121,7 @@ with open("outputs.txt", "w") as f:
         f.write(f"Why: {', '.join(explanation)}\n")
         f.write(f"Next Step: {action}\n\n")
 
-print("\nSample outputs saved to outputs.txt")
+print(f"\nSample outputs saved to {outputs_path}")
 
 # -----------------------------
 # Interactive Mode
