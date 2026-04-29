@@ -136,12 +136,18 @@ print(f"\nSample outputs saved to {outputs_path}")
 # Interactive Mode
 # -----------------------------
 while True:
-    user_input = input("\nEnter an email (or type 'exit'): ")
+    print("Enter an email (or type 'exit'): ")
+    lines = []
+    while True:
+        line = input()
+        if line == "": break
+        lines.append(line)
+    text = "\n".join(lines)
 
-    if user_input.lower() == "exit":
+    if text.lower() == "exit":
         break
 
-    label, explanation, action = predict_email(user_input)
+    label, explanation, action = predict_email(text)
 
     print("\nPrediction:", label)
     print("Why:", ", ".join(explanation))
