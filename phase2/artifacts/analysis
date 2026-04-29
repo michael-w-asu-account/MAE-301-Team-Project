@@ -1,0 +1,7 @@
+Model struggles with:
+- Short phishing messages without keywords
+- Messages that mimic casual tone
+
+Model performs well on:
+- Urgent language
+- Financial incentives
