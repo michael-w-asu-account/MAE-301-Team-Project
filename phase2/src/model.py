@@ -7,12 +7,19 @@ import joblib
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import classification_report
+from sklearn.metrics import classification_report, confusion_matrix
+
+# -----------------------------
+# Paths
+# -----------------------------
+script_dir = os.path.dirname(os.path.abspath(__file__))
+data_path = os.path.normpath(os.path.join(script_dir, "..", "data", "emails.csv"))
+artifacts_dir = os.path.normpath(os.path.join(script_dir, "..", "artifacts"))
 
 # -----------------------------
 # Load Dataset
 # -----------------------------
-df = pd.read_csv("data/emails.csv")
+df = pd.read_csv(data_path)
 
 # -----------------------------
 # Train/Test Split
@@ -24,32 +31,41 @@ X_train, X_test, y_train, y_test = train_test_split(
 # -----------------------------
 # Vectorization
 # -----------------------------
-vectorizer = TfidfVectorizer()
+vectorizer = TfidfVectorizer(
+    stop_words='english',
+    ngram_range=(1,2),
+    max_features=5000
+)
 X_train_tfidf = vectorizer.fit_transform(X_train)
 X_test_tfidf = vectorizer.transform(X_test)
 
 # -----------------------------
 # Train Model
 # -----------------------------
-model = LogisticRegression()
+model = LogisticRegression(class_weight='balanced', max_iter=1000)
 model.fit(X_train_tfidf, y_train)
 
 # -----------------------------
 # Evaluate Model
 # -----------------------------
 y_pred = model.predict(X_test_tfidf)
+
 report = classification_report(y_test, y_pred)
+cm = confusion_matrix(y_test, y_pred)
 
 print("\nModel Evaluation:\n")
 print(report)
 
+print("\nConfusion Matrix:\n")
+print(cm)
+
 # -----------------------------
 # Save Artifacts
 # -----------------------------
-os.makedirs("artifacts", exist_ok=True)
+os.makedirs(artifacts_dir, exist_ok=True)
 
-joblib.dump(model, "artifacts/model.pkl")
-joblib.dump(vectorizer, "artifacts/vectorizer.pkl")
+joblib.dump(model, os.path.join(artifacts_dir, "model.pkl"))
+joblib.dump(vectorizer, os.path.join(artifacts_dir, "vectorizer.pkl"))
 
 # -----------------------------
 # Explanation Function
@@ -104,7 +120,8 @@ sample_emails = [
     "Watch this video for free money!"
 ]
 
-with open("outputs.txt", "w") as f:
+outputs_path = os.path.join(artifacts_dir, "outputs.txt")
+with open(outputs_path, "w") as f:
     for email in sample_emails:
         label, explanation, action = predict_email(email)
 
@@ -113,18 +130,24 @@ with open("outputs.txt", "w") as f:
         f.write(f"Why: {', '.join(explanation)}\n")
         f.write(f"Next Step: {action}\n\n")
 
-print("\nSample outputs saved to outputs.txt")
+print(f"\nSample outputs saved to {outputs_path}")
 
 # -----------------------------
 # Interactive Mode
 # -----------------------------
 while True:
-    user_input = input("\nEnter an email (or type 'exit'): ")
+    print("Enter an email (or type 'exit'): ")
+    lines = []
+    while True:
+        line = input()
+        if line == "": break
+        lines.append(line)
+    text = "\n".join(lines)
 
-    if user_input.lower() == "exit":
+    if text.lower() == "exit":
         break
 
-    label, explanation, action = predict_email(user_input)
+    label, explanation, action = predict_email(text)
 
     print("\nPrediction:", label)
     print("Why:", ", ".join(explanation))

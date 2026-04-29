@@ -7,3 +7,7 @@ python src/model.py
 Baseline phishing email classifier using TF-IDF and logistic regression.
 ## Outputs
 See artifacts/ folder
+## Model Improvements
+- TF-IDF with n-grams
+- Class balancing
+- Explainability layer

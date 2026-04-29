@@ -1,0 +1,25 @@
+Email: Reset your password now!
+Prediction: Phishing
+Why: Contains urgency language, Mentions sensitive account information
+Next Step: Do NOT click links. Verify sender before taking action.
+
+Email: Hey, are we still on for dinner?
+Prediction: Legitimate
+Why: No obvious phishing patterns detected
+Next Step: Email appears safe, but remain cautious.
+
+Email: Click here to claim your reward!
+Prediction: Phishing
+Why: Requests clicking a link or verification
+Next Step: Do NOT click links. Verify sender before taking action.
+
+Email: Can you send me the notes from class?
+Prediction: Legitimate
+Why: No obvious phishing patterns detected
+Next Step: Email appears safe, but remain cautious.
+
+Email: Watch this video for free money!
+Prediction: Phishing
+Why: Too-good-to-be-true offer
+Next Step: Do NOT click links. Verify sender before taking action.
+
