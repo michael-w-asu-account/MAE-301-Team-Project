@@ -7,7 +7,7 @@ import joblib
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import classification_report
+from sklearn.metrics import classification_report, confusion_matrix
 
 # -----------------------------
 # Paths
@@ -31,24 +31,33 @@ X_train, X_test, y_train, y_test = train_test_split(
 # -----------------------------
 # Vectorization
 # -----------------------------
-vectorizer = TfidfVectorizer()
+vectorizer = TfidfVectorizer(
+    stop_words='english',
+    ngram_range=(1,2),
+    max_features=5000
+)
 X_train_tfidf = vectorizer.fit_transform(X_train)
 X_test_tfidf = vectorizer.transform(X_test)
 
 # -----------------------------
 # Train Model
 # -----------------------------
-model = LogisticRegression()
+model = LogisticRegression(class_weight='balanced', max_iter=1000)
 model.fit(X_train_tfidf, y_train)
 
 # -----------------------------
 # Evaluate Model
 # -----------------------------
 y_pred = model.predict(X_test_tfidf)
+
 report = classification_report(y_test, y_pred)
+cm = confusion_matrix(y_test, y_pred)
 
 print("\nModel Evaluation:\n")
 print(report)
+
+print("\nConfusion Matrix:\n")
+print(cm)
 
 # -----------------------------
 # Save Artifacts
